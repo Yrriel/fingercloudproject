@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+* {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    
+  }
+
+  body{
+    background: radial-gradient(rgb(248, 192, 255), rgb(128, 62, 128), black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .img-container{
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .login-pic{
+    /* position: absolute; */
+
+    height: 150px;
+    border-radius: 60px;
+    /* filter: invert(10%) sepia(86%) saturate(6971%) hue-rotate(343deg) brightness(86%) contrast(99%); */
+  }
+
+  @keyframes picpic {
+    0%{
+        filter: invert(4%) sepia(78%) saturate(5601%) hue-rotate(269deg) brightness(105%) contrast(121%);
+      transform: translateY(-5vh);
+      height: 40vh;
+    }
+
+    50%{
+        filter: invert(4%) sepia(78%) saturate(5601%) hue-rotate(269deg) brightness(105%) contrast(121%);
+      transform: translateY(-5vh);
+      height: 40vh;
+    }
+
+    100%{
+        filter: invert(10%) sepia(86%) saturate(6971%) hue-rotate(343deg) brightness(86%) contrast(99%);
+      transform: translateY(0);
+      height: 150px;
+    }
+  } 
+  /*  */
+
+  @keyframes picpic2 {
+    0%{
+        filter: invert(4%) sepia(78%) saturate(5601%) hue-rotate(269deg) brightness(105%) contrast(121%);
+      transform: translateY(-5vh);
+      height: 40vh;
+    }
+
+    50%{
+        filter: invert(4%) sepia(78%) saturate(5601%) hue-rotate(269deg) brightness(105%) contrast(121%);
+      transform: translateY(-5vh);
+      height: 40vh;
+    }
+
+    100%{
+      filter: invert(42%) sepia(12%) saturate(2342%) hue-rotate(354deg) brightness(97%) contrast(104%);
+      transform: translateY(0);
+      height: 150px;
+    }
+  } 
+  .color-login{
+    animation: picpic forwards;
+    animation-duration: 1000ms;
+  }
+
+  .color-reg{
+    animation: picpic2 forwards;
+    animation-duration: 1000ms;
+  }
+
+  .wrapper{
+    /* background: #b85b49; */
+    max-width: 400px;
+    max-height: 400px;
+  }
+
+  .wrapper .input-box{
+    
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    margin:0, auto;
+    width: 100%;
+    height: 30px;
+    
+    
+    /* background-color: aqua; */
+  }
+
+  .fadeThis{
+    animation: inputFade;
+    animation-duration: 2000ms;
+  }
+
+  @keyframes inputFade {
+    0%{
+      opacity: 0%;
+    }
+    60%{
+      opacity: 0%;
+    }
+
+    100%{
+      opacity: 100%;
+    }
+  }
+
+  .input-box input{
+    width: 300px;
+    height: 100%;
+    border: none;
+    box-shadow: 1px 3px 7px #8f001f;
+    border-radius: 20px;
+    padding: 10px 20px 5px 20px;
+  }
+
+  .button-container{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    
+  }
+
+  button{
+    box-shadow: 1px 3px 7px #8f001f;
+    width: 200px;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px 5px 20px;
+    transition: background .5s, color .5s;
+  }
+
+  button:hover{
+    cursor: pointer;
+    animation: fadeColor;
+    animation-duration: 500ms;
+    background-color: #4da8f1;
+      color: rgb(0, 0, 0);
+  }
+
+  .p-container{
+    margin-top: 20px;
+    text-align: center;
+    color: white;
+  }
+
+  .p-container a{
+    text-decoration: none;
+    color: white;
+  }
+
+  .p-container a:hover{
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
