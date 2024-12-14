@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Account Setup</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9;
+            color: #333;
+            height: 100vh;
+            width: 100vw;
+        }
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            color: #fff;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+            background-color: #212529;
+        }
+        .container.active {
+            display: block;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #eee6ff;
+        }
+        p {
+            text-align: center;
+        }
+        .serial-number {
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+            color: #333;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group input, .form-group button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group button {
+            background: #6146ff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 20px;
+        }
+        .form-group button:disabled {
+            background: #aaa;
+            cursor: not-allowed;
+        }
+        .form-group button:hover:enabled {
+            background: #4424f8;
+        }
+        .fingerprint-animation {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .fingerprint-animation img {
+            width: 150px;
+            height: 150px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- Step 1: Serial Number -->
+    <div class="container active" id="page-1">
+        <h1>Step 1: Connect Your ESP32</h1>
+        <p>Please use the following serial number to connect your ESP32 device:</p>
+        <div class="serial-number">SN-1234-5678-ABCD</div>
+        <p id="status-text">Status: Waiting for connection...</p>
+        <div class="form-group">
+            <button onclick="nextPage(2)" id="next-btn-1" disabled>Next</button>
+        </div>
+    </div>
+
+    <!-- Step 2: Fingerprint Enrollment -->
+    <div class="container" id="page-2">
+        <h1>Step 2: Enroll Fingerprint</h1>
+        <p>Place your finger on the fingerprint sensor to enroll your fingerprint.</p>
+        <div class="fingerprint-animation">
+            <img src="https://via.placeholder.com/150?text=Fingerprint" alt="Fingerprint Animation">
+        </div>
+        <!-- Simulated input for fingerprint enrollment -->
+        <p id="step-2-status">Status: Waiting for fingerprint...</p>
+        <div class="form-group">
+            <!-- Simulated button to 'enroll' fingerprint -->
+            <button id="enroll-fingerprint-btn" onclick="enrollFingerprint()">Enroll Fingerprint</button>
+        </div>
+        <div class="form-group">
+            <button id="next-btn-2" disabled onclick="nextPage(3)">Next</button>
+        </div>
+    </div>
+
+    <!-- Step 3: User Details -->
+    <div class="container" id="page-3">
+        <h1>Step 3: Personal Information</h1>
+        <form id="user-details-form">
+            <div class="form-group">
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" name="first-name" placeholder="Enter your first name">
+            </div>
+            <div class="form-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" name="last-name" placeholder="Enter your last name">
+            </div>
+            <div class="form-group">
+                <button type="submit">Finish</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function nextPage(pageNumber) {
+            document.querySelectorAll('.container').forEach(container => {
+                container.classList.remove('active');
+            });
+            document.getElementById(`page-${pageNumber}`).classList.add('active');
+        }
+
+        // Mocking a condition for the ESP32 connection status
+        const statusText = document.getElementById('status-text');
+        const nextBtn1 = document.getElementById('next-btn-1');
+        const step2Status = document.getElementById('step-2-status');
+        const nextBtn2 = document.getElementById('next-btn-2');
+
+        // Simulate checking the connection and updating status for ESP32
+        setTimeout(() => {
+            statusText.textContent = "Status: ESP32 connected successfully!";
+            nextBtn1.disabled = false; // Enable the "Next" button in Step 1 when connected
+        }, 3000); // Simulate a 3-second delay for connection
+
+        // Simulate the fingerprint enrollment process when user clicks the button
+        function enrollFingerprint() {
+            step2Status.textContent = "Status: Enrolling fingerprint...";
+            document.getElementById('enroll-fingerprint-btn').disabled = true; // Disable button after click
+
+            // Simulating fingerprint enrollment completion with a timeout
+            setTimeout(() => {
+                step2Status.textContent = "Status: Fingerprint enrolled successfully!";
+                nextBtn2.disabled = false; // Enable the "Next" button in Step 2 when enrollment is complete
+            }, 5000); // Simulate a 5-second fingerprint enrollment process
+        }
+
+        // Handling the form submission
+        document.getElementById('user-details-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const firstName = document.getElementById('first-name').value;
+            const lastName = document.getElementById('last-name').value;
+
+            console.log('User Details:', { firstName, lastName });
+            alert('Setup Complete! Welcome, ' + firstName + ' ' + lastName + '!');
+        });
+    </script>
+</body>
+</html>
